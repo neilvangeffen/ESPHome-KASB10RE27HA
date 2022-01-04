@@ -1,0 +1,73 @@
+# These substitutions allow the end user to override certain values
+substitutions:
+  devicename: "kogan-rgbw"
+
+esphome:
+  name: ${devicename}
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: true
+
+  # This will allow for (future) project identification,
+  # configuration and updates.
+  project:
+    name: ned.kogan-rgbw
+    version: "1.0"
+
+esp8266:
+  board: esp01_1m
+
+wifi:
+  ssid: !secret WIFI_SSID
+  password: !secret WIFI_PASS
+  reboot_timeout: 0s                # disable auto reboot and do via holding switch
+  use_address: ${devicename}.local  # change this if you rename devices etc
+  # Set up a wifi access point
+  ap:
+    password: "12345678"
+
+logger:                 # Enable logging
+api:                    # Enable Home Assistant API
+ota:                    # enable over the air fw uploading
+web_server:             # dont need this, but nice to be able to login and/or update FW
+  port: 80
+
+# This should point to the public location of this yaml file.
+dashboard_import:
+  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-KASB10RE27HA.yaml
+
+# In combination with the `ap` this allows the user
+# to provision wifi credentials to the device.
+captive_portal:
+
+# Sets up the improv via serial client for Wi-Fi provisioning
+improv_serial:
+
+sm16716:
+  data_pin: GPIO14
+  clock_pin: GPIO4
+  num_channels: 3
+  num_chips: 1
+
+output:
+  - platform: sm16716
+    id: output_red
+    channel: 0
+  - platform: sm16716
+    id: output_green
+    channel: 1
+  - platform: sm16716
+    id: output_blue
+    channel: 2
+  - platform: esp8266_pwm
+    id: output_white
+    pin: GPIO5
+
+light:
+  - platform: rgbw
+    name: ${devicename}
+    id: light
+    red: output_red
+    green: output_green
+    blue: output_blue
+    white: output_white
