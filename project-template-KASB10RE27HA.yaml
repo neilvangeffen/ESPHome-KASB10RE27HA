@@ -20,7 +20,7 @@ esp8266:
 wifi:
   # Set up a wifi access point
   ap:
-    password: "1234"
+    password: "12345678"
 
 logger:                 # Enable logging
 api:                    # Enable Home Assistant API
