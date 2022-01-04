@@ -1,6 +1,6 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "kogan-rgbw"
+  name: "kogan-rgbw-e27"
 
 esphome:
   name: ${name}
@@ -38,6 +38,22 @@ captive_portal:
 
 # Sets up the improv via serial client for Wi-Fi provisioning
 improv_serial:
+
+binary_sensor:
+  - platform: status
+    name: "${name} Status"   # API Status of the device
+
+text_sensor:
+  - platform: version
+    name: "${name} ESPHome Version"
+
+sensor:
+  - platform: wifi_signal
+    name: "${name} WiFi Signal"
+    update_interval: 60s
+
+  - platform: uptime
+    name: "${name} Uptime"
 
 sm16716:
   data_pin: GPIO14
