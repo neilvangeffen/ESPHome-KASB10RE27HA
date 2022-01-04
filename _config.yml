@@ -1,4 +1,6 @@
 # CHANGEME: Set these variable to your liking
-title: ESPHome Project Template
-description: Powered by ESPHome and ESP Web Tools
+title: ESPHome RGBW KASB10RE27HA
+description: Kogan 10W Ambient 1050lm RGBW Bulb
 theme: jekyll-theme-slate
+
+# Does this just appear in the yaml file after adopting? because that would be great!

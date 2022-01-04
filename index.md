@@ -1,6 +1,6 @@
 # About
 
-Add some information about your project here.
+ESP Home file for flashing to your Kogan 10W Ambient 1050lm RGBW Bulb
 
 # Installation
 
