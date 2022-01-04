@@ -1,9 +1,9 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  devicename: "kogan-rgbw"
+  name: "kogan-rgbw"
 
 esphome:
-  name: ${devicename}
+  name: ${name}
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
@@ -20,7 +20,7 @@ esp8266:
 wifi:
   # Set up a wifi access point
   ap:
-    password: "12345678"
+    password: "1234"
 
 logger:                 # Enable logging
 api:                    # Enable Home Assistant API
@@ -61,7 +61,7 @@ output:
 
 light:
   - platform: rgbw
-    name: ${devicename}
+    name: ${name}
     red: output_red
     green: output_green
     blue: output_blue
