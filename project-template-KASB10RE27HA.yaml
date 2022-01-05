@@ -30,7 +30,7 @@ web_server:             # dont need this, but nice to be able to login and/or up
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-KASB10RE27HA.yaml
+  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-KASB10RE27HA.yaml@main
 
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
