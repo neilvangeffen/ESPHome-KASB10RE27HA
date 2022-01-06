@@ -1,9 +1,10 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "kogan-rgbw-e27"
+  name: "kogan-rgbw"
+  friendly_name: "Kogan RGWB"
 
 esphome:
-  name: ${name}
+  name: "${name}"
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
@@ -17,20 +18,27 @@ esphome:
 esp8266:
   board: esp01_1m
 
+# To be able to get logs from the device via serial and api.
+logger:
+
+# API is a requirement of the dashboard import.
+api:
+
+# OTA is required for Over-the-Air updating
+ota:
+
+# This should point to the public location of this yaml file.
+dashboard_import:
+  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-KASB10RE27HA.yaml@main
+
 wifi:
   # Set up a wifi access point
   ap:
     password: "12345678"
 
-logger:                 # Enable logging
-api:                    # Enable Home Assistant API
-ota:                    # enable over the air fw uploading
-web_server:             # dont need this, but nice to be able to login and/or update FW
+# Web server is a nice thing to be able to login and look at status/upload firmware etc
+web_server: 
   port: 80
-
-# This should point to the public location of this yaml file.
-dashboard_import:
-  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-KASB10RE27HA.yaml@main
 
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
@@ -41,19 +49,19 @@ improv_serial:
 
 binary_sensor:
   - platform: status
-    name: "${name} Status"   # API Status of the device
+    name: "${friendly_name} Status"   # API Status of the device
 
 text_sensor:
   - platform: version
-    name: "${name} ESPHome Version"
+    name: "${friendly_name} ESPHome Version"
 
 sensor:
   - platform: wifi_signal
-    name: "${name} WiFi Signal"
+    name: "${friendly_name} WiFi Signal"
     update_interval: 60s
 
   - platform: uptime
-    name: "${name} Uptime"
+    name: "${friendly_name} Uptime"
 
 sm16716:
   data_pin: GPIO14
@@ -77,7 +85,7 @@ output:
 
 light:
   - platform: rgbw
-    name: ${name}
+    name: "${friendly_name}"
     red: output_red
     green: output_green
     blue: output_blue
