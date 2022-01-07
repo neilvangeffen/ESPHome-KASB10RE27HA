@@ -91,3 +91,4 @@ light:
     blue: output_blue
     white: output_white
     restore_mode: RESTORE_DEFAULT_ON 
+    constant_brightness: true
